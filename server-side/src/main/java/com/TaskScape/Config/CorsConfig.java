@@ -19,7 +19,7 @@ public class CorsConfig implements WebMvcConfigurer {
         //the origin can access all path patterns
         //the origin is defined as out server hosted in the client-side
         corsRegistry.addMapping("/**")
-                .allowedOrigins("http://localhost:62527/");
+                .allowedOrigins("http://localhost:52575");
     }
 
 }

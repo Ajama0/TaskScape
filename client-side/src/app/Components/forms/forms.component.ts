@@ -21,6 +21,8 @@ export class FormsComponent implements OnInit{
   
   //this will be a boolean check that will be set to false whenever the client sends a request to update the status
   isPending:Boolean = false
+
+  isSuccess:Boolean = false
   
 
   
@@ -40,7 +42,7 @@ onSubmit():void{
     "title": this.title,
     "description": this.description,
     "date" : this.date,
-    "priority" : this.priority
+    "priority" : this.priority.toUpperCase()
   }
 
 
@@ -62,6 +64,7 @@ onSubmit():void{
       //button yes or no, if no stay redirect them to the homepage, if yes redirect them to tasks
       //if we have submitted and the user 
       //this.router.navigate(["my-tasks"])
+      this.isSuccess = true
     },
     error:(error:ErrorEvent)=>{
       console.log(error.message)

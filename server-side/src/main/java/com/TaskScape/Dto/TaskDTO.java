@@ -7,6 +7,7 @@ import java.time.LocalDate;
 
 public class TaskDTO {
 
+
     private String title;
     private String description;
     private Priority priority;
@@ -23,7 +24,7 @@ public class TaskDTO {
     }
 
 
-    //mapping the Dto to an Entity
+    public TaskDTO(){}
 
 
 
