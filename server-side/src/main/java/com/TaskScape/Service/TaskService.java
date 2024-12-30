@@ -1,6 +1,8 @@
-package com.TaskScape.TaskScape;
+package com.TaskScape.Service;
 
 
+import com.TaskScape.Dto.TaskDTO;
+import com.TaskScape.Repository.TaskRepository;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,7 +15,6 @@ public class TaskService {
     }
     public TaskDTO createTasks(TaskDTO task) {
         //we can do some simple validations
-
 
     }
 }

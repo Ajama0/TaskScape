@@ -1,5 +1,7 @@
-package com.TaskScape.TaskScape;
+package com.TaskScape.Controller;
 
+import com.TaskScape.Dto.TaskDTO;
+import com.TaskScape.Service.TaskService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

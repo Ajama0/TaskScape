@@ -1,8 +1,8 @@
-package com.TaskScape.TaskScape;
+package com.TaskScape.Models;
 
 
-import com.TaskScape.TaskScape.Constants.Priority;
-import com.TaskScape.TaskScape.Constants.Status;
+import com.TaskScape.Constants.Priority;
+import com.TaskScape.Constants.Status;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 import lombok.*;

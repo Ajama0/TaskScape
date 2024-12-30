@@ -1,4 +1,4 @@
-package com.TaskScape.TaskScape.Constants;
+package com.TaskScape.Constants;
 
 public enum Status {
     COMPLETED,

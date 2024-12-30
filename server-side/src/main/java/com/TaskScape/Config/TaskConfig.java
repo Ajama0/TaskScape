@@ -1,8 +1,10 @@
-package com.TaskScape.TaskScape;
+package com.TaskScape.Config;
 
 
-import com.TaskScape.TaskScape.Constants.Priority;
-import com.TaskScape.TaskScape.Constants.Status;
+import com.TaskScape.Constants.Priority;
+import com.TaskScape.Constants.Status;
+import com.TaskScape.Models.Task;
+import com.TaskScape.Repository.TaskRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

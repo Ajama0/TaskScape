@@ -1,4 +1,4 @@
-package com.TaskScape.TaskScape;
+package com.TaskScape.Exceptions;
 
 public class TaskException extends RuntimeException{
 
