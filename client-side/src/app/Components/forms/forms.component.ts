@@ -63,7 +63,7 @@ onSubmit():void{
       //would you like to see your tasks
       //button yes or no, if no stay redirect them to the homepage, if yes redirect them to tasks
       //if we have submitted and the user 
-      //this.router.navigate(["my-tasks"])
+      this.router.navigate(["my-tasks"])
       this.isSuccess = true
     },
     error:(error:ErrorEvent)=>{
