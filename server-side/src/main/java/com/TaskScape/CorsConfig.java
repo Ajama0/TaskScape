@@ -10,7 +10,7 @@ public class CorsConfig implements WebMvcConfigurer {
     /**
      * allows us to define the configurations for CORS
      * essentially we can define which origin can access our resources and which endpoints they have access to
-     * CORS by default disabled the ability for 2 servers with different origins to share data
+     * The browser by default disabled CORS meaning 2 servers with different origins can not share data
      * with this function we override the implementation of addCorsMapping to define our own origin
      *with java 8 default methods we can only need to define implementations of methods we want
      */

@@ -2,10 +2,13 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { TaskService } from '../../Service/api/task.service';
 import { Task } from '../../Service/api/Models/Task';
 import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+
+
 
 @Component({
   selector: 'app-forms',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './forms.component.html',
   styleUrl: './forms.component.css'
 })
@@ -41,12 +44,11 @@ onSubmit():void{
     "priority" : this.priority
   }
 
- 
-  
   //instead of logging, we would like the response to be a variable and we retrieve this an input
   this.taskService.createTasks(this.task).subscribe({
     next:(data)=>{
-
+    
+    //best practice is to return the Id of the post request  
     console.log("Task created Successfully!" , data)
     
     //add a pop up button
