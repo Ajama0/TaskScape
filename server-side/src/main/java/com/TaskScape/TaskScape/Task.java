@@ -5,21 +5,17 @@ import com.TaskScape.TaskScape.Constants.Priority;
 import com.TaskScape.TaskScape.Constants.Status;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
 
-@Entity
+
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
-@Table(name = "Tasks")
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@Entity
+@Table(name = "Tasks")
 public class Task {
 
 
@@ -49,10 +45,10 @@ public class Task {
     private LocalDate date;
 
     @Column(name = "created_date")
-    private LocalDate createddate;
+    private LocalDate createdDate;
 
     @Column(name = "updated_at")
-    private LocalDate updatedat;
+    private LocalDate updateDate;
 
 
 
@@ -67,7 +63,71 @@ public class Task {
         this.description = description;
         this.priority = priority;
         this.date = date;
-        this.updatedat = LocalDate.now(ZoneId.of("GMT"));
+        this.updateDate = LocalDate.now(ZoneId.of("GMT"));
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return Title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Priority getPriority() {
+        return priority;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public LocalDate getCreatedDate() {
+        return createdDate;
+    }
+
+    public LocalDate getUpdateDate() {
+        return updateDate;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setTitle(String title) {
+        Title = title;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setPriority(Priority priority) {
+        this.priority = priority;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public void setCreatedDate(LocalDate createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public void setUpdateDate(LocalDate updateDate) {
+        this.updateDate = updateDate;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     @Override
