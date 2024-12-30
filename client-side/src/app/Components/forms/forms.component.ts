@@ -18,14 +18,13 @@ export class FormsComponent implements OnInit{
   description:string = ""
   date : Date = new Date()
   priority:string = ""
+  
+  //this will be a boolean check that will be set to false whenever the client sends a request to update the status
+  isPending:Boolean = false
+  
 
   
   task:Task | null = null
-
-
-  //ideally from the endpoint, once the user creates a task we will redirect them to my-tasks 
-  //when redirected to my-tasks we will fetch all of their tasks, returning all their tasks
-  isCreated: boolean = false
 
   constructor(private taskService:TaskService, 
     private router:Router){
@@ -44,12 +43,17 @@ onSubmit():void{
     "priority" : this.priority
   }
 
+
+
   //instead of logging, we would like the response to be a variable and we retrieve this an input
   this.taskService.createTasks(this.task).subscribe({
     next:(data)=>{
+
     
     //best practice is to return the Id of the post request  
     console.log("Task created Successfully!" , data)
+    //whenever the user submits a form, we can set the isPending to true
+    this.isPending = true
     
     //add a pop up button
     //allow the user to click yes or no for going to see their tasks
@@ -57,7 +61,7 @@ onSubmit():void{
       //would you like to see your tasks
       //button yes or no, if no stay redirect them to the homepage, if yes redirect them to tasks
       //if we have submitted and the user 
-      this.router.navigate(["my-tasks"])
+      //this.router.navigate(["my-tasks"])
     },
     error:(error:ErrorEvent)=>{
       console.log(error.message)

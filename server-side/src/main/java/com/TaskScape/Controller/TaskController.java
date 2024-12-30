@@ -2,6 +2,7 @@ package com.TaskScape.Controller;
 
 import com.TaskScape.Dto.TaskDTO;
 import com.TaskScape.Service.TaskService;
+import lombok.NonNull;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +19,7 @@ public class TaskController {
     }
 
     @PostMapping ("/create")
-    public ResponseEntity<TaskDTO> welcomeUsers(@RequestBody TaskDTO task){
+    public ResponseEntity<TaskDTO> welcomeUsers(@NonNull @RequestBody TaskDTO task){
         TaskDTO taskCreated = taskService.createTasks(task);
         return new ResponseEntity<>(taskCreated, HttpStatus.OK);
     }
