@@ -8,10 +8,13 @@ import { Observable } from 'rxjs';
 })
 export class TaskService {
 
-  constructor(Httpclient: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
 
 
   createTasks(task:Task):Observable<Task>{
+    //we want to send a post request to the server with the parameter, which is the payload that will be binded to the requestbody
+    //the post request takes 2 params (url, body=<T>)
+    return this.http.post<Task>("", task)
   }
 }
