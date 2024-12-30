@@ -8,11 +8,11 @@ export const routes: Routes = [
     {
         path : "my-tasks",
         component : MyTasksComponent
-    }
+    },
 
-    //{
-    //path : "create",
-    //component : FormsComponent
+    {
+    path : "create",
+    component : FormsComponent
         
-    //}
+    }
 ];
