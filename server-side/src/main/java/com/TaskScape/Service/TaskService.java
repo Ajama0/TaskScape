@@ -25,7 +25,7 @@ public class TaskService {
     }
 
     @Transactional
-    public TaskRequestDto createTasks(TaskRequestDto task) {
+    public Long createTasks(TaskRequestDto task) {
         //we can do some simple validations, to check if the task already exists(this is for a single user for now)
         List<Task> validateDuplicates = taskRepository.findByTitleAndDescription(
                 task.getTitle(), task.getDescription()
@@ -54,8 +54,8 @@ public class TaskService {
 
         taskRepository.save(retrieveTask);
 
-        //return DTO back to the user
-        return new TaskRequestDto(retrieveTask);
+        return retrieveTask.getId();
+
     }
 
     public List<TaskResponseDto> fetchTasks() {
@@ -70,5 +70,22 @@ public class TaskService {
                 .map(task -> new TaskResponseDto(task))
                 .collect(Collectors.toList());
 
+    }
+
+    public TaskResponseDto updateTaskStatus(Long taskId, Status status) {
+        //validate the id to see if it exists
+        //an error on this endpoint would redirect the user in the client-side to the task creation endpoint
+        Task task = taskRepository.findById(taskId)
+                .orElseThrow(()->new TaskNotFoundException("This task does not exist.. please create one"));
+
+        //ensure the user is not setting the status to the same status
+        if(task.getStatus().equals(status)){
+            throw new TaskNotFoundException("please choose a different option");
+        }
+        task.setStatus(status);
+        Task updatedTask = taskRepository.save(task);
+
+        //map the task into a dto to return to the client side
+        return new TaskResponseDto(updatedTask);
     }
 }

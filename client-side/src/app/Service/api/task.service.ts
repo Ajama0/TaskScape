@@ -28,4 +28,11 @@ export class TaskService {
     return this.http.get<Task[]>(findAllUrl)
 }
 
+  updateToCompleted(id:number, value:string):Observable<Task>{
+    //define the endpoint to be sent to the server and bind the request parameter which is value
+    const updateStatusPath:string = `${this.BASE_URL}/update/status?id=${id}&value=${value}`
+    return this.http.put<Task>(updateStatusPath, null)
+
+  }
+
 }

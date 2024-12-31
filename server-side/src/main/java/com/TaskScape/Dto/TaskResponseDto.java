@@ -9,6 +9,8 @@ import java.time.LocalDate;
 
 
 public class TaskResponseDto {
+
+    private Long id;
     private String title;
     private String description;
     private Priority priority;
@@ -17,6 +19,7 @@ public class TaskResponseDto {
 
 
     public TaskResponseDto(Task task) {
+        this.id = task.getId();
         this.title = task.getTitle();
         this.description =task.getDescription();
         this.priority = task.getPriority();
@@ -28,6 +31,14 @@ public class TaskResponseDto {
 
     public String getTitle() {
         return title;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public void setTitle(String title) {

@@ -4,10 +4,16 @@ to the html elements. We need to import the FormsModule which allows us to manip
 with directives
 -->
 
-<div class = "" *ngFor="let task of myTasks">
-    <h1>{{task.title}}</h1>
-    <h4>{{task.description}}</h4>
-    <h4>{{task.priority}}</h4>
-    <h4>{{task.date}}</h4>
-    <h4>{{task.status}}</h4>
-</div>
+<div class="task-container" *ngFor="let task of myTasks; index as i">
+    <h1 class="task-title">{{ task.title }}</h1>
+    <p class="task-detail">{{ task.description }}</p>
+    <p class="task-detail">{{ task.priority | lowercase }} priority</p>
+    <p class="task-detail">Datee: {{ task.date }}</p>
+    <div class="task-status">
+      <button class="btn-pending" *ngIf="task.status !== 'PENDING'" (click)="setToPending(task.id!, 'PENDING')">
+        Mark as Pending</button>
+      <button class="btn-completed" *ngIf="task.status !== 'COMPLETED'" (click)="setToCompleted(task.id!, 'COMPLETED')">
+        Mark as Completed</button>
+    </div>
+  </div>
+  
