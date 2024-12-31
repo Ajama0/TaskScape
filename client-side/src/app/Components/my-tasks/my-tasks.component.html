@@ -1,1 +1,13 @@
-<p>my-tasks works!</p>
+<!--
+This renders the current tasks associated to the user and we bind the object returned from a get request 
+to the html elements. We need to import the FormsModule which allows us to manipulate the dom and bind data
+with directives
+-->
+
+<div class = "" *ngFor="let task of myTasks">
+    <h1>{{task.title}}</h1>
+    <h4>{{task.description}}</h4>
+    <h4>{{task.priority}}</h4>
+    <h4>{{task.date}}</h4>
+    <h4>{{task.status}}</h4>
+</div>

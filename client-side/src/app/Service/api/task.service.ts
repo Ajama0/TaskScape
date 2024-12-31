@@ -24,7 +24,7 @@ export class TaskService {
 
   //the return type from the server includes a status and therfore wont be of type task
   findTasks():Observable<Task[]>{
-    const findAllUrl:string = `${this.BASE_URL}/tasks`
+    const findAllUrl:string = `${this.BASE_URL}/my-tasks`
     return this.http.get<Task[]>(findAllUrl)
 }
 
