@@ -5,6 +5,7 @@ export interface Task{
     description:string
     priority:string
     date:Date
+    status?:string
     
     
 

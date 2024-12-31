@@ -20,4 +20,12 @@ export class TaskService {
     const createEndpoint:string  = `${this.BASE_URL}/create`
     return this.http.post<Task>(createEndpoint, task)
   }
+
+
+  //the return type from the server includes a status and therfore wont be of type task
+  findTasks():Observable<Task[]>{
+    const findAllUrl:string = `${this.BASE_URL}/tasks`
+    return this.http.get<Task[]>(findAllUrl)
+}
+
 }

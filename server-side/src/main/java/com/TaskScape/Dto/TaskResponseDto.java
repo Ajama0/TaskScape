@@ -3,8 +3,10 @@ package com.TaskScape.Dto;
 import com.TaskScape.Constants.Priority;
 import com.TaskScape.Constants.Status;
 import com.TaskScape.Models.Task;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+
 
 public class TaskResponseDto {
     private String title;
@@ -21,6 +23,8 @@ public class TaskResponseDto {
         this.date = task.getDate();
         this.status = task.getStatus();
     }
+
+    public TaskResponseDto(){}
 
     public String getTitle() {
         return title;

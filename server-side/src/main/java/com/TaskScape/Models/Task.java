@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 
 
-@NoArgsConstructor
+
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Entity
@@ -65,6 +65,8 @@ public class Task {
         this.date = date;
         this.updateDate = LocalDate.now(ZoneId.of("GMT"));
     }
+
+    public Task(){}
 
     public Long getId() {
         return id;

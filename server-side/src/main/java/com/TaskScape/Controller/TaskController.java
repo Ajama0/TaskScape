@@ -21,7 +21,7 @@ public class TaskController {
         this.taskService = taskService;
     }
 
-    @GetMapping(path="/tasks")
+    @GetMapping(path="my-tasks")
     public ResponseEntity<List<TaskResponseDto>> fetchAllTasks(){
         List<TaskResponseDto> tasks = taskService.fetchTasks();
         return new ResponseEntity<>(tasks, HttpStatus.OK);

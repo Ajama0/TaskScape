@@ -66,6 +66,7 @@ public class TaskService {
         }
         //iterate through the tasks list and map each task to DTO, hide internals when sending back to client
         return tasks.stream()
+                .filter(task -> task.getStatus()!=null)
                 .map(task -> new TaskResponseDto(task))
                 .collect(Collectors.toList());
 
