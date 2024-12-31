@@ -2,8 +2,9 @@ package com.TaskScape.Service;
 
 
 import com.TaskScape.Constants.Status;
-import com.TaskScape.Dto.TaskDTO;
-import com.TaskScape.Exceptions.TaskException;
+import com.TaskScape.Dto.TaskRequestDto;
+import com.TaskScape.Dto.TaskResponseDto;
+import com.TaskScape.Exceptions.TaskNotFoundException;
 import com.TaskScape.Mapper.TaskMapper;
 import com.TaskScape.Models.Task;
 import com.TaskScape.Repository.TaskRepository;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class TaskService {
@@ -23,7 +25,7 @@ public class TaskService {
     }
 
     @Transactional
-    public TaskDTO createTasks(TaskDTO task) {
+    public TaskRequestDto createTasks(TaskRequestDto task) {
         //we can do some simple validations, to check if the task already exists(this is for a single user for now)
         List<Task> validateDuplicates = taskRepository.findByTitleAndDescription(
                 task.getTitle(), task.getDescription()
@@ -31,7 +33,7 @@ public class TaskService {
 
         //this means there are no duplicative tasks already for this user, (prevent an overload of the same task being persisted)
         if(!validateDuplicates.isEmpty()){
-            throw new TaskException(task.getTitle() + "is already set to another task, please add a different title");
+            throw new TaskNotFoundException(task.getTitle() + "is already set to another task, please add a different title");
 
         }
 
@@ -53,6 +55,19 @@ public class TaskService {
         taskRepository.save(retrieveTask);
 
         //return DTO back to the user
-        return new TaskDTO(retrieveTask);
+        return new TaskRequestDto(retrieveTask);
+    }
+
+    public List<TaskResponseDto> fetchTasks() {
+        List<Task> tasks = taskRepository.findAll();
+
+        if(tasks.isEmpty()){
+            throw new TaskNotFoundException("There are currently no available tasks");
+        }
+        //iterate through the tasks list and map each task to DTO, hide internals when sending back to client
+        return tasks.stream()
+                .map(task -> new TaskResponseDto(task))
+                .collect(Collectors.toList());
+
     }
 }

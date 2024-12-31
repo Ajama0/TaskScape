@@ -30,7 +30,8 @@ public class TaskConfig {
     CommandLineRunner commandLineRunner(){
         return args -> {
             //create an instance of the task and save some initial Tasks
-
+            /**
+             * prevent duplicates as the ddl is already set to Update
             Task t1 = new Task(
                     "Complete 3K run",
                     "run a 3k as per the weekly schedule",
@@ -44,6 +45,7 @@ public class TaskConfig {
             t1.setStatus(Status.PENDING);
 
             taskRepository.save(t1);
+            **/
 
 
         };

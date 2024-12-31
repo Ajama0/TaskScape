@@ -1,32 +1,26 @@
 package com.TaskScape.Dto;
 
 import com.TaskScape.Constants.Priority;
+import com.TaskScape.Constants.Status;
 import com.TaskScape.Models.Task;
 
 import java.time.LocalDate;
 
-public class TaskDTO {
-
-
+public class TaskResponseDto {
     private String title;
     private String description;
     private Priority priority;
     private LocalDate date;
+    private Status status;
 
 
-    //mapping the Entity to a DTO
-    public TaskDTO(Task task){
-      this.title = task.getTitle();
-      this.description = task.getDescription();
-      this.priority = task.getPriority();
-      this.date = task.getDate();
-
+    public TaskResponseDto(Task task) {
+        this.title = task.getTitle();
+        this.description =task.getDescription();
+        this.priority = task.getPriority();
+        this.date = task.getDate();
+        this.status = task.getStatus();
     }
-
-
-    public TaskDTO(){}
-
-
 
     public String getTitle() {
         return title;
@@ -58,5 +52,13 @@ public class TaskDTO {
 
     public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }
