@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpStatusCode } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Task } from './Models/Task';
 import { Observable } from 'rxjs';
@@ -41,6 +41,13 @@ export class TaskService {
     const pendingStatusURL = `${this.BASE_URL}/update/status/c?id=${id}&id2=${value}`
     //return null in the put request as no requestbody will be sent to the server
     return this.http.put<Task>(pendingStatusURL,null)
+  }
+  
+  //best practices are to exclude a response body for a delete request, thus return nothing. 
+  deleteTask(id:number):Observable<void>{
+    const deleteTaskUrl = `${this.BASE_URL}\delete\${id}`
+    return this.http.delete<void>(deleteTaskUrl)
+
   }
 
 }

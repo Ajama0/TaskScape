@@ -3,6 +3,7 @@ import { TaskService } from '../../Service/api/task.service';
 import { Task } from '../../Service/api/Models/Task';
 import { CommonModule } from '@angular/common';
 import { delay } from 'rxjs';
+import { HttpStatusCode } from '@angular/common/http';
 
 @Component({
   selector: 'app-my-tasks',
@@ -73,6 +74,20 @@ export class MyTasksComponent implements OnInit{
         console.log(error.message)
       }
     })
+    }
+
+
+    deleteTasks(id:number):void{
+      //essentially we pass the id of the dom element that has triggered the deletion to the service
+      this.taskService.deleteTask(id).subscribe({
+        next:()=>{
+          console.log("deleted")
+          this.fetchTasks()
+        },
+        error:(error:ErrorEvent)=>{
+          console.log(error.message)
+        }
+      })
     }
 
   
