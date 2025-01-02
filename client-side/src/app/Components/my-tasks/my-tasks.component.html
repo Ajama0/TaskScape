@@ -10,9 +10,9 @@ with directives
     <p class="task-detail">{{ task.priority | lowercase }} priority</p>
     <p class="task-detail">Datee: {{ task.date }}</p>
     <div class="task-status">
-      <button class="btn-pending" *ngIf="task.status !== 'PENDING'" (click)="setToPending(task.id!, 'PENDING')">
+      <button class="btn-pending" *ngIf="task.status == 'COMPLETED'" (click)="setToPending(task.id!, 'PENDING')">
         Mark as Pending</button>
-      <button class="btn-completed" *ngIf="task.status !== 'COMPLETED'" (click)="setToCompleted(task.id!, 'COMPLETED')">
+      <button class="btn-completed" *ngIf="task.status == 'PENDING'" (click)="setToCompleted(task.id!, 'COMPLETED')">
         Mark as Completed</button>
     </div>
   </div>

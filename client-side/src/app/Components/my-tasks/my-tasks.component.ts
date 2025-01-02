@@ -60,8 +60,25 @@ export class MyTasksComponent implements OnInit{
     
   }
 
-  setToPending(id: number, value: string):Task {
-    throw new Error('Method not implemented.');
+  setToPending(id: number, value: string):void {
+    //call the service class function and pass in the values from the DOM
+
+    this.taskService.updateToPending(id,value).subscribe({
+      next:(updatedTask:Task)=>{
+        //find the current index of the current instance, 
+        //replace the value at that index with the updatedTask parameter
+
+        const retrieveIndex = this.myTasks.findIndex(task=> task.id = updatedTask.id)
+
+        //if the index returned is -1, we must handle this event as it means id's were not found
+        if(retrieveIndex!==-1){
+        this.myTasks[retrieveIndex]=updatedTask
+        }
+      },
+      error:(error:ErrorEvent)=>{
+        console.log(error.message)
+      }
+    })
     }
 
   

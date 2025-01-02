@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class TaskService {
+ 
 
   BASE_URL: string = "http://localhost:8097/api/v1/Tasks";
 
@@ -33,6 +34,13 @@ export class TaskService {
     const updateStatusPath:string = `${this.BASE_URL}/update/status?id=${id}&value=${value}`
     return this.http.put<Task>(updateStatusPath, null)
 
+  }
+
+
+  updateToPending(id: number, value: string):Observable<Task> {
+    const pendingStatusURL = `${this.BASE_URL}/update/status/c?id=${id}&id2=${value}`
+    //return null in the put request as no requestbody will be sent to the server
+    return this.http.put<Task>(pendingStatusURL,null)
   }
 
 }
