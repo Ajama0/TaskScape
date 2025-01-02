@@ -45,17 +45,30 @@ public class TaskController {
 
     /**
      *
-     * @param taskId
-     * @param status
-     * @return
+     * @param taskId retrieved from the client side, to query the db associated to the task that made the request
+     * @param status the value of the request param is binded to this method param and is the new value for the status
+     * @return Response entity instance with return body as our DTO to hide internals and a 200 status code
      */
 
     @PutMapping(path = "update/status")
-    public ResponseEntity<TaskResponseDto> updateTaskStatus(@RequestParam("id")Long taskId,
+    public ResponseEntity<TaskResponseDto> updateToPendingStatus(@RequestParam("id")Long taskId,
                                                  @RequestParam ("value") Status status){
 
         TaskResponseDto updatedTask = taskService.updateTaskStatus(taskId, status);
         return new ResponseEntity<>(updatedTask, HttpStatus.OK);
     }
+
+    @PutMapping(value="update/status/c")
+    public ResponseEntity<TaskResponseDto>updateToCompletedStatus(
+            //use a default value for the key of the request param
+            @RequestParam("id") Long taskId,
+            @RequestParam("id2") Status status
+    ){
+        TaskResponseDto taskToCompleted = taskService.updateToCompleted(taskId,status);
+        return new ResponseEntity<>(taskToCompleted, HttpStatus.OK);
+    }
+
+
+
 
 }

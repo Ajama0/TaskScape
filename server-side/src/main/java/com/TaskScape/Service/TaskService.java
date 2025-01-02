@@ -4,6 +4,7 @@ package com.TaskScape.Service;
 import com.TaskScape.Constants.Status;
 import com.TaskScape.Dto.TaskRequestDto;
 import com.TaskScape.Dto.TaskResponseDto;
+import com.TaskScape.Exceptions.InvalidTaskOperationException;
 import com.TaskScape.Exceptions.TaskNotFoundException;
 import com.TaskScape.Mapper.TaskMapper;
 import com.TaskScape.Models.Task;
@@ -87,5 +88,23 @@ public class TaskService {
 
         //map the task into a dto to return to the client side
         return new TaskResponseDto(updatedTask);
+    }
+
+    public TaskResponseDto updateToCompleted(Long taskId, Status status) {
+        //ensure the task sent by the client holds a valid record
+        Task retrieveTask = taskRepository.findById(taskId)
+                .orElseThrow(()-> new TaskNotFoundException("Task with id: " + taskId + " does not exist"));
+
+        if(retrieveTask.getStatus().equals(status)){
+            throw new InvalidTaskOperationException("Status:" + status + " can not be persisted due to it holding the same value in the database");
+        }
+
+        //persist the status for the task of the client into the db
+        retrieveTask.setStatus(status);
+
+        Task task = taskRepository.save(retrieveTask);
+        //return the dto to the client side allowing us to update the component
+        return new TaskResponseDto(task);
+
     }
 }
