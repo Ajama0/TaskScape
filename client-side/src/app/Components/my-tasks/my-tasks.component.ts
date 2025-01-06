@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { TaskService } from '../../Service/api/task.service';
-import { Task } from '../../Service/api/Models/Task';
+import { TaskService } from '../../Service/api/TaskService/task.service';
+import { Task } from '../../Models/Task';
 import { CommonModule } from '@angular/common';
 import { delay } from 'rxjs';
 import { HttpStatusCode } from '@angular/common/http';

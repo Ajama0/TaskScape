@@ -1,6 +1,6 @@
 import { HttpClient, HttpStatusCode } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Task } from './Models/Task';
+import { Task } from '../../../Models/Task';
 import { Observable } from 'rxjs';
 
 
@@ -45,7 +45,7 @@ export class TaskService {
   
   //best practices are to exclude a response body for a delete request, thus return nothing. 
   deleteTask(id:number):Observable<void>{
-    const deleteTaskUrl = `${this.BASE_URL}\delete\${id}`
+    const deleteTaskUrl = `${this.BASE_URL}/delete/${id}`
     return this.http.delete<void>(deleteTaskUrl)
 
   }

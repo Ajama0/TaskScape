@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { TaskService } from '../../Service/api/task.service';
-import { Task } from '../../Service/api/Models/Task';
+import { TaskService } from '../../Service/api/TaskService/task.service';
+import { Task } from '../../Models/Task';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 

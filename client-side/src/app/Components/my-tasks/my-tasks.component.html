@@ -10,7 +10,7 @@ with directives
     <p class="task-detail">{{ task.priority | lowercase }} priority</p>
     <p class="task-detail">Date: {{ task.date }}</p>
     <div class="task-status">
-      <button type = "button" (click)="deleteTask(task.id)">delete</button>
+      <button type = "button" (click)="deleteTasks(task.id!)">delete</button>
       <button class="btn-pending" *ngIf="task.status == 'COMPLETED'" (click)="setToPending(task.id!, 'PENDING')">
         Mark as Pending</button>
       <button class="btn-completed" *ngIf="task.status == 'PENDING'" (click)="setToCompleted(task.id!, 'COMPLETED')">
